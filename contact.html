@@ -1,0 +1,982 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Ron Gadget Store</title>
+    <link rel="icon" type="image/x-icon" href="ron.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --primary-light: #bbf7d0;
+            --accent: #3b82f6;
+            --dark: #1f2937;
+            --dark-gray: #4b5563;
+            --medium-gray: #9ca3af;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-icons a {
+            color: var(--dark-gray);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Contact Hero */
+        .contact-hero {
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            top: -150px;
+            right: -100px;
+        }
+
+        .contact-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+
+        .contact-hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-hero h1 span {
+            color: var(--primary);
+        }
+
+        .contact-hero p {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Store Info Banner */
+        .store-info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin: 30px auto 40px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+        }
+
+        .store-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .info-item i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .info-item h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-item p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .phone-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 40px 10px 60px;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .contact-card p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .social-links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            justify-content: flex-start;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .social-link i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .social-link.facebook i { color: #1877F2; }
+        .social-link.instagram i { color: #E4405F; }
+        .social-link.twitter i { color: #1DA1F2; }
+        .social-link.youtube i { color: #FF0000; }
+        .social-link.tiktok i { color: #000000; }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn i {
+            font-size: 28px;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 40px 10px;
+            background-color: var(--light-gray);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .map-placeholder i {
+            font-size: 60px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        .map-placeholder h3 {
+            color: var(--dark-gray);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .map-placeholder p {
+            color: var(--medium-gray);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .contact-hero h1 {
+                font-size: 40px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .social-link {
+                min-width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                order: 2;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                display: none;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav ul li {
+                padding: 12px 0;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .nav-icons {
+                order: 1;
+                margin-left: auto;
+                margin-right: 20px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+            
+            .contact-hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .contact-card {
+                padding: 30px 20px;
+            }
+            
+            .social-link {
+                min-width: 160px;
+                padding: 10px 15px;
+            }
+            
+            .whatsapp-btn {
+                padding: 18px 30px;
+                font-size: 18px;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .store-info {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-link {
+                min-width: 100%;
+            }
+            
+            .phone-number {
+                font-size: 20px;
+                padding: 8px 16px;
+            }
+            
+            .whatsapp-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .contact-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+            
+            .contact-card h3 {
+                font-size: 22px;
+            }
+            
+            .whatsapp-btn {
+                padding: 16px 25px;
+                font-size: 16px;
+            }
+            
+            .map-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container, .header-container, .contact-hero-content, .contact-section {
+                padding: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <img src="ron.png" alt="Ron Gadget Store Logo" class="logo-img">
+                <div class="logo-text">Ron <span>Gadget Store</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="paper1.html">Smartphones</a></li>
+                    <li><a href="paper2.html">Laptops & Tablets</a></li>
+                    <li><a href="paper3.html">Audio & Video</a></li>
+                    <li><a href="paper4.html">Gaming</a></li>
+                    <li><a href="paper5.html">Accessories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="location.html">Store Location</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container contact-hero-content">
+            <h1>Get In <span>Touch</span></h1>
+            <p>We're here to help you with all your gadget needs. Reach out to us through any of the channels below, and our team will be happy to assist you.</p>
+        </div>
+    </section>
+
+    <!-- Store Info Banner -->
+    <div class="container">
+        <div class="store-info">
+            <div class="store-info-grid">
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p class="phone-number">+256 705426719</p>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Saturday: 8:30 AM - 7:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Delivery Service</h3>
+                    <p>Available until 6:00 PM</p>
+                    <p>Same-day delivery in Wilson area</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Connect With Us</h2>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Phone Contact -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Reach out directly by phone for immediate assistance</p>
+                    <a href="tel:+256705426719" class="phone-number" style="margin-top: 10px;">+256 705426719</a>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <p>Stay updated with our latest products and offers</p>
+                    
+                    <div class="social-links-grid">
+                        <a href="https://www.facebook.com/profile.php?id=100064235821938" target="_blank" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/ron_gadget_store" target="_blank" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        
+                        <a href="https://x.com/RonGadgets" target="_blank" class="social-link twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter (X)</span>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@Rongadgetstore" target="_blank" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        
+                        <a href="https://www.tiktok.com/@ron_gadget_store" target="_blank" class="social-link tiktok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Chat</h3>
+                    <p>Message us directly on WhatsApp for quick responses</p>
+                    
+                    <div class="whatsapp-button">
+                        <a href="https://wa.me/256705426719?text=Hey%20Ron%20gadgets" target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Location</h2>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Wilson One WA08 Basement</h3>
+                    <p>Along Wilson Street</p>
+                    <p>Open: Monday - Saturday, 8:30 AM - 7:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Ron Gadget Store</h3>
+                    <p>Your trusted destination for premium electronics and gaming gear. Visit us for the latest technology products and accessories.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100064235821938" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ron_gadget_store" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/RonGadgets" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@Rongadgetstore" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@ron_gadget_store" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +256 705426719</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 8:30am-7:00pm</li>
+                        <li><i class="fas fa-clock"></i> Sunday: Closed</li>
+                        <li><i class="fas fa-truck"></i> Delivery until 6:00pm</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="paper1.html">Smartphones</a></li>
+                        <li><a href="paper2.html">Laptops & Tablets</a></li>
+                        <li><a href="paper3.html">Audio & Video</a></li>
+                        <li><a href="paper4.html">Gaming</a></li>
+                        <li><a href="contact.html" class="active">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Store Location</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Wilson One WA08 Basement</li>
+                        <li><i class="fas fa-road"></i> Along Wilson Street</li>
+                        <li><i class="fas fa-clock"></i> Open: 8:30am-7:00pm</li>
+                        <li><i class="fas fa-truck"></i> Delivery: Until 6:00pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Ron Gadget Store. All rights reserved. | Your trusted gadget partner!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Add active class to current page in navigation
+        const currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // WhatsApp button functionality
+        const whatsappBtn = document.querySelector('.whatsapp-btn');
+        if (whatsappBtn) {
+            // Pre-filled message is already in the href
+            whatsappBtn.addEventListener('click', function(e) {
+                // The link will open WhatsApp automatically
+                // We can add analytics or tracking here if needed
+                console.log('WhatsApp button clicked');
+            });
+        }
+
+        // Add animation to contact cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe contact cards for animation
+        const observeContactCards = () => {
+            document.querySelectorAll('.contact-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+        
+        // Initial observation
+        observeContactCards();
+    </script>
+</body>
+</html>
